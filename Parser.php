@@ -48,8 +48,16 @@ class Parser
             $data['mediaSequence'] = 0;
         }
 
+        if (empty($data['targetDuration'])) {
+            $data['targetDuration'] = 0;
+        }
+
         $playlist = new Playlist();
         foreach ($data['playlist'] as $index => $row) {
+            if (empty($row['duration'])) {
+                $row['duration'] = 0;
+            }
+
             $mediaSegment = new MediaSegment(
                 $row['uri'],
                 $row['duration'],
